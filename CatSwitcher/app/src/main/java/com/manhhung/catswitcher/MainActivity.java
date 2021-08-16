@@ -2,10 +2,12 @@ package com.manhhung.catswitcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.TimeInterpolator;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageSwitcher;
 
@@ -41,13 +43,21 @@ public class MainActivity extends AppCompatActivity {
         Drawable[] imgName = {getDrawable(R.drawable.a1), getDrawable(R.drawable.a2), getDrawable(R.drawable.a3)};
         imgSwitcher.setBackground(getDrawable(R.drawable.a1));
 
+
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if( i< 2){
+
+                if( i < 2){
+
                     i++;
                     imgSwitcher.setBackground(imgName[i]);
+                    imgSwitcher.animate().alpha(0).setDuration(2000);
+
+//                    imgSwitcher.animate().setDuration(10000);
+//                    imgSwitcher.animate().alpha(1);
                 }
+
             }
         });
 
@@ -57,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
                 if( i> 0){
                     i--;
                     imgSwitcher.setBackground(imgName[i]);
+                    imgSwitcher.animate().alpha(1).setDuration(2000);
+
                 }
             }
         });
